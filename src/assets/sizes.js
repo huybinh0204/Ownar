@@ -1,5 +1,9 @@
 const sizes = {
     // global sizes
+    sizestitle: 16,
+    sizestextinput: 16,
+
+
     small: 5,
     base: 16,
     font: 14,
@@ -11,8 +15,6 @@ const sizes = {
     h1: 26,
     h2: 20,
     h3: 18,
-    title: 16,
-
     body: 14,
     caption: 12,
 };
