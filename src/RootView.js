@@ -6,12 +6,13 @@ import StackNavigation from './routers/StackNavigation';
 import {SkypeIndicator} from 'react-native-indicators';
 import GeneralStatusBarColor from './components/GeneralStatusBarColor';
 import {HEIGHT, HEIGHTXD} from './config/Functions';
+import TabNavigator from './routers/TabNavigation';
 
 const RootView = (props) => {
     return (
         <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? -HEIGHTXD(44) : 0}}>
             <GeneralStatusBarColor backgroundColor="#000" barStyle="light-content" />
-            <StackNavigation/>
+            <TabNavigator/>
             <Modal isVisible={props.loadingModal.isVisible}>
                 <SkypeIndicator color={'white'}/>
             </Modal>

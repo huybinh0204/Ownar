@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import R from '../assets/R';
 import Drawer from './Drawer';
+import QrCodeScreens from '../Screens/QRCode/QRCodeScreens';
 const Tab = createBottomTabNavigator();
 const TabNavigator = (props) => {
     return (
@@ -23,7 +24,7 @@ const TabNavigator = (props) => {
                 />
                 <Tab.Screen
                     name="Screen2"
-                    component={Drawer}
+                    component={QrCodeScreens}
                     options={{
                         tabBarLabel: 'QRCode',
                         tabBarIcon: ({color, size}) => (

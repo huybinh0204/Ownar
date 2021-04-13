@@ -2,3 +2,4 @@ export const LOGINSCREEN = 'LOGINSCREEN';
 export const HOMESCREEN = 'HOMESCREEN';
 export const SIGNUPVIEW = 'SIGNUPVIEW';
 export const RESPASSVIEW = 'RESPASSVIEW';
+export const QRCODEVIEW = 'QRCODEVIEW';
