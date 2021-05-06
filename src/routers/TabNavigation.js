@@ -5,7 +5,9 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import R from '../assets/R';
 import Drawer from './Drawer';
 import QrCodeScreens from '../Screens/QRCode/QRCodeScreens';
+import SettingScreens from '../Screens/Setting/SettingScreens';
 const Tab = createBottomTabNavigator();
+
 const TabNavigator = (props) => {
     return (
         <NavigationContainer>
@@ -42,16 +44,16 @@ const TabNavigator = (props) => {
                 {/*        ),*/}
                 {/*    }}*/}
                 {/*/>*/}
-                {/*<Tab.Screen*/}
-                {/*    name="Screen3"*/}
-                {/*    component={SettingContainer}*/}
-                {/*    options={{*/}
-                {/*        tabBarLabel: 'Cài đặt',*/}
-                {/*        tabBarIcon: ({color, size}) => (*/}
-                {/*            <Icon name="setting" size={30} color={color} />*/}
-                {/*        ),*/}
-                {/*    }}*/}
-                {/*/>*/}
+                <Tab.Screen
+                    name="Screen3"
+                    component={SettingScreens}
+                    options={{
+                        tabBarLabel: 'Cài đặt',
+                        tabBarIcon: ({color, size}) => (
+                            <Icon name="setting" size={30} color={color} />
+                        ),
+                    }}
+                />
             </Tab.Navigator>
         </NavigationContainer>
 

@@ -8,6 +8,8 @@ import * as ScreenName from './ScreenNames';
 import SignUpView from '../Screens/Login/SignUpView';
 import ResPassView from '../Screens/Login/ResPassView';
 import QrCodeScreens from '../Screens/QRCode/QRCodeScreens';
+import SettingScreens from '../Screens/Setting/SettingScreens';
+
 const Stack = createStackNavigator();
 
 function MyStack(props) {
@@ -20,6 +22,7 @@ function MyStack(props) {
             <Stack.Screen name={ScreenName.SIGNUPVIEW} component={SignUpView} />
             <Stack.Screen name={ScreenName.RESPASSVIEW} component={ResPassView} />
             <Stack.Screen name={ScreenName.QRCODEVIEW} component={QrCodeScreens} />
+            <Stack.Screen name={ScreenName.SETTINGSCREENS} component={SettingScreens} />
         </Stack.Navigator>
     );
 }
