@@ -9,7 +9,7 @@ const HomeView = (props) => {
     return (
         <View style={{flex: 1}}>
             <Headers/>
-            <ScrollView>
+            {/*<ScrollView>*/}
                 <View style={{flex: 1.2, margin: 10}}>
                     <Text style={{color: R.colors.loginlogo, fontWeight: 'bold', fontSize: getFont(18)}}>Bảo vệ</Text>
                     <FlatList
@@ -113,7 +113,7 @@ const HomeView = (props) => {
 
                     </View>
                 </View>
-            </ScrollView>
+            {/*</ScrollView>*/}
         </View>
     );
 };

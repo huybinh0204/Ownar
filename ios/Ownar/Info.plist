@@ -71,10 +71,10 @@
 		<string>Zocial.ttf</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-    <string>Your own description of the purpose</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Your message to user when the photo library is accessed for the first time</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Your message to user when the microsphone is accessed for the first time</string>
+	<string>Your own description of the purpose</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microsphone is accessed for the first time</string>
 </dict>
 </plist>
