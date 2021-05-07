@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity, ScrollView} from 'react-native';
 import Headers from '../../components/Headers/Headers';
 import R from '../../assets/R';
+import {useNavigation} from '@react-navigation/native';
 import {getFont, HEIGHT} from '../../config/Functions';
-
+import {connect} from "react-redux";
+import {hideLoading, showLoading} from "../../redux/actions/loadingAction";
 const HomeView = (props) => {
-
+    const navigation = useNavigation();
     return (
         <View style={{flex: 1}}>
             <Headers/>
@@ -118,4 +120,13 @@ const HomeView = (props) => {
     );
 };
 
-export default HomeView;
+// @ts-ignore
+function mapStateToProps(state) {
+    return {
+        loadingModal: state.ModalLoadingReducer,
+    };
+}
+
+export default connect(mapStateToProps, {showLoading, hideLoading})(
+    HomeView,
+);

@@ -12,7 +12,7 @@ const RootView = (props) => {
     return (
         <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? -HEIGHTXD(44) : 0}}>
             <GeneralStatusBarColor backgroundColor="#000" barStyle="light-content" />
-            <TabNavigator/>
+            <StackNavigation/>
             <Modal isVisible={props.loadingModal.isVisible}>
                 <SkypeIndicator color={'white'}/>
             </Modal>

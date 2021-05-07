@@ -10,6 +10,7 @@ import {
 import R from '../assets/R';
 
 import HomeScreens from '../Screens/Home/HomeScreens';
+
 function Feed({navigation}) {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

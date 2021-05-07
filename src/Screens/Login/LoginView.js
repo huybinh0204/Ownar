@@ -6,8 +6,8 @@ import {CheckBox} from 'react-native-elements';
 import RadioForm from 'react-native-simple-radio-button';
 import R from '../../assets/R';
 import {getFont, getFontXD, HEIGHTXD} from '../../config/Functions';
-import {useNavigation} from '@react-navigation/core';
-import {HOMESCREEN, RESPASSVIEW, SIGNUPVIEW} from '../../routers/ScreenNames';
+import {useNavigation} from '@react-navigation/native';
+import {RESPASSVIEW, SIGNUPVIEW, TABNAVIGATION} from '../../routers/ScreenNames';
 
 var radio_props = [
     {label: 'Chủ bãi xe.    ', value: 'owner'},
@@ -75,7 +75,7 @@ const LoginView = (props) => {
             </View>
             <View style={{flex: 1, margin: HEIGHTXD(30)}}>
                 <TouchableOpacity
-                    onPress={() => navigation.push(HOMESCREEN)}
+                    onPress={() => navigation.push(TABNAVIGATION)}
                     style={{
                     height: 40,
                     borderRadius: 20,

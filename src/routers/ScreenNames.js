@@ -1,6 +1,10 @@
 export const LOGINSCREEN = 'LOGINSCREEN';
 export const HOMESCREEN = 'HOMESCREEN';
+
+export const TABNAVIGATION = 'TABNAVIGATION';
+
 export const SIGNUPVIEW = 'SIGNUPVIEW';
 export const RESPASSVIEW = 'RESPASSVIEW';
 export const QRCODEVIEW = 'QRCODEVIEW';
 export const SETTINGSCREENS = 'SETTINGSCREENS';
+export const ITEMGUARD = 'ITEMGUARD';
