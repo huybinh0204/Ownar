@@ -7,24 +7,21 @@ import {connect} from 'react-redux';
 import {hideLoading, showLoading} from '../../../redux/actions/loadingAction';
 import ButtonAdd from '../../../components/ButtonAdd';
 import setting_styles from '../Styles_Setting';
-import showAlert from '../../../components/DropdownAlert';
-// import DropdownAlert from 'react-native-dropdownalert';
-
+import {showAlert, typeAlert} from '../../../components/DropdownAlert';
 const ImageView = (props) => {
     const title = String(props.route.params.param);
-    // let dropDownAlertRef = useRef(null)
-    const GetonPress = () => {
+    let dropDownAlertRef = useRef(null)
+    const GetonPress = async () => {
         Alert.alert("1111")
     }
-    const GetDelete = () => {
-        // dropDownAlertRef.alertWithType('success', "title", "description");
-        // showAlert("as","4444","5555")
+    const GetDelete = async() => {
+        // showAlert(typeAlert.ERROR, 'Thoong bao', 'Thanh cong');
     }
 
 
     return (
         <View style={styles.container}>
-            {/*<DropdownAlert ref={ref =>{dropDownAlertRef=ref}}/>*/}
+
             <HeadeSetting header_title={title}/>
             <View style={setting_styles.view_setting_a}>
                 <View style={setting_styles.view_setting_b}>
