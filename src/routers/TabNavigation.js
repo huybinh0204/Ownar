@@ -15,7 +15,7 @@ const TabNavigator = (props) => {
     return (
         <Tab.Navigator
             initialRouteName="Screen1"
-            tabBarOptions={{activeTintColor: R.colors.main}}>
+            tabBarOptions={{activeTintColor: R.colors.color_icon}}>
             <Tab.Screen
                 name="Screen1"
                 component={Drawer}

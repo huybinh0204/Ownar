@@ -7,60 +7,42 @@ const datas = [
         icon: 'history',
         right: 0,
         is_from: 1,
-        screens: [{
-            title: 'Quản lý bảo vệ',
-            screen: 'P',
-        }],
+        screens: 'GUARDVIEW',
     },
     {
         name: 'Quản lý bãi xe',
         icon: 'graduation-cap',
         right: 0,
         is_from: 1,
-        screens: [{
-            title: 'Trình độ Anh ngữ',
-            screen: 'DIFICULTYLEVEL',
-        }],
+        screens: 'PARKINGVIEW',
     },
     {
         name: 'Thống kê giao dich',
         icon: 'question',
         right: 6,
         is_from: 1,
-        screens: [{
-            title: 'Câu hỏi thường gặp',
-            screen: 'FAQ',
-        }],
+        screens: 'TRANSACTIONVIEW',
     },
     {
         name: 'Thư viện ảnh',
         icon: 'comment-alt',
         right: 6,
         is_from: 1,
-        screens: [{
-            title: 'Điều khoản dịch vu',
-            screen: 'SERVICE',
-        }],
+        screens: 'IMAGEVIEW',
     },
     {
         name: 'Reviews',
         icon: 'book',
         right: 6,
         is_from: 1,
-        screens: [{
-            title: 'Chính sách bảo mật',
-            screen: 'POLICY',
-        }],
+        screens: 'REVIEWSVIEW',
     },
     {
         name: 'Hồ sơ',
         icon: 'book',
         right: 6,
-        is_from: 1,
-        screens: [{
-            title: 'Chính sách bảo mật',
-            screen: 'POLICY',
-        }],
+        is_from: 2,
+        screens: 'FILESVIEW',
     },
 ];
 
@@ -71,6 +53,15 @@ const SettingScreens = (props) => {
         const obj =[];
         for (var i = 0; i < datas.length; i++) {
             if (datas[i].is_from == 1 && dcv == 1) {
+                const sha = {
+                    name: datas[i].name,
+                    icon: datas[i].icon,
+                    right: datas[i].right,
+                    is_from: datas[i].is_from,
+                    screens: datas[i].screens,
+                };
+                obj.push(sha);
+            } else if (datas[i].is_from == 2 && dcv == 1) {
                 const sha = {
                     name: datas[i].name,
                     icon: datas[i].icon,
