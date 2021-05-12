@@ -2,7 +2,7 @@ export const OneSignalKey = {
 };
 export const NetworkSetting = {
 
-    ROOT: 'https://englishcentral.edu.vn/api',
+    ROOT: 'http://oneparking.dcv.vn/api/owner',
 };
 export const StringSetting = {
     SUB_APPNAME: 'OWNA',

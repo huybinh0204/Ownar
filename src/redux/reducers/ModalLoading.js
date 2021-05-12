@@ -8,12 +8,12 @@ const initialState = {
 export default function ModalLoadingReducer(state = initialState, action) {
     switch (action.type) {
         case SHOWLOADING: {
-            return {isVisible: true};
+            return { isVisible: true };
         }
         case HIDELOADING: {
-            return {isVisible: false};
+            return { isVisible: false };
         }
         default:
             return state;
-    }
+    };
 }

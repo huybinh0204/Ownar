@@ -15,15 +15,18 @@ import {TouchableOpacity as TouchableOpacityInModal} from 'react-native-gesture-
 
 const Header = (props) => {
     const navigation = useNavigation();
-    const [email, setEmail] = React.useState('owner@admin.com');
+    const datamaps = props.datamaps.data
+    console.log("datamasp",datamaps);
+    const [email, setEmail] = React.useState('');
     const [bdx, setBdx] = React.useState('');
     const [isModalVisible, setModalVisible] = React.useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
-    const getSetView = () => {
-        Alert.alert('thoong tin');
+    const getSetView = (items) => {
+        props._reloadData(items)
+        toggleModal()
     };
     return (
         <View style={styles.container}>
@@ -72,7 +75,7 @@ const Header = (props) => {
                     </View>
                     <View style={{flex: 1, margin: HEIGHTXD(20)}}>
                         <FlatList
-                            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+                            data={datamaps}
                             showsHorizontalScrollIndicator={false}
                             renderItem={({item}) =>
                                 <TouchableOpacity style={{
@@ -81,10 +84,9 @@ const Header = (props) => {
                                     borderBottomColor: '#e9d9d9',
                                     flexDirection: 'row',
                                     paddingVertical: 6,
-                                }} onPress={() => getSetView()}>
+                                }} onPress={() => getSetView(item)}>
                                     <View style={{width: '90%'}}>
-                                        <Text numberOfLines={2} style={{fontSize: 16}}>
-                                            621 Nguyen huy Tuo Xuan Xuan ascasd as</Text>
+                                        <Text numberOfLines={2} style={{fontSize: 16}}>{item.title}</Text>
                                     </View>
                                     <View style={{width: '20%', justifyContent: 'center'}}>
                                         <Image

@@ -8,11 +8,34 @@ import {hideLoading, showLoading} from '../../../redux/actions/loadingAction';
 import ButtonAdd from '../../../components/ButtonAdd';
 import setting_styles from '../Styles_Setting';
 import {showAlert, typeAlert} from '../../../components/DropdownAlert';
+import DocumentPicker from 'react-native-document-picker';
 const ImageView = (props) => {
     const title = String(props.route.params.param);
-    let dropDownAlertRef = useRef(null)
+    const [singleFile, setSingleFile] = React.useState(null);
     const GetonPress = async () => {
-        Alert.alert("1111")
+        // const res = await DocumentPicker.pick({
+        //     type: [DocumentPicker.types.allFiles],
+        // });
+        // setSingleFile({ singleFile: res });
+        try {
+            const results = await DocumentPicker.pickMultiple({
+
+                type: [DocumentPicker.types.images],
+            });
+            // for (const res of results) {
+            //     console.log(
+            //         res.uri,
+            //         res.type, // mime type
+            //         res.name,
+            //         res.size
+            //     );
+            // }
+        } catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+            } else {
+                throw err;
+            }
+        }
     }
     const GetDelete = async() => {
         // showAlert(typeAlert.ERROR, 'Thoong bao', 'Thanh cong');

@@ -1,6 +1,6 @@
 import React from 'react';
+
 import {Provider} from 'react-redux';
-import {View} from 'react-native';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './src/redux/reducers/index';
 import RootView from './src/RootView';
@@ -14,7 +14,7 @@ sagaMiddleware.run(rootSaga);
 const App = () => {
     return (
         <Provider store={store}>
-            <RootView/>
+            <RootView />
         </Provider>
     );
 };

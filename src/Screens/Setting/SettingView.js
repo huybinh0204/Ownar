@@ -1,19 +1,19 @@
 import React, {Component,useEffect} from 'react';
-import {Alert, FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, AsyncStorage, FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import R from '../../assets/R';
-import {REPASSWORDVIEW} from '../../routers/ScreenNames';
+import {LOGINSCREEN, REPASSWORDVIEW} from '../../routers/ScreenNames';
 const SettingView = (props) => {
     const navigation = useNavigation();
     const {datas} = props;
 
-    const LogOut =()=>{
-        // AsyncStorage.clear();
-        // navigation.reset({
-        //     index: 1,
-        //     routes: [{name: LOGINSCREEN}],
-        // });
+    const LogOut = async ()=>{
+        AsyncStorage.clear();
+        navigation.reset({
+            index: 1,
+            routes: [{name: LOGINSCREEN}],
+        });
     }
     const getView=(item, index)=>{
        const title = item.name

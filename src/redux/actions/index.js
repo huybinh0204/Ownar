@@ -1,5 +1,5 @@
-import {saveList, removeList} from './courseAction';
+import {showLoading, hideLoading} from './loadingAction';
 export const ActionCreators = Object.assign({
-    saveList,
-    removeList,
+    showLoading,
+    hideLoading,
 });

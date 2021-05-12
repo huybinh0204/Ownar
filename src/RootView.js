@@ -1,4 +1,4 @@
-import React, {useEffect,useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Platform, Dimensions, StatusBar} from 'react-native';
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
@@ -9,12 +9,14 @@ import {HEIGHT, HEIGHTXD, WIDTHXD} from './config/Functions';
 import TabNavigator from './routers/TabNavigation';
 import DropdownAlert from 'react-native-dropdownalert';
 import {AlertHelper} from './components/DropdownAlert';
+
 const RootView = (props) => {
+    console.log(props.loadingModal.isVisible);
     return (
         <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? -HEIGHTXD(44) : 0}}>
             {/*<GeneralStatusBarColor backgroundColor="#3880ff" barStyle="light-content" />*/}
             <StackNavigation/>
-            <Modal isVisible={props.loadingModal.isVisible}>
+            <Modal style={{justifyContent: 'center', alignItems:'center'}} isVisible={props.loadingModal.isVisible}>
                 <SkypeIndicator color={'white'}/>
             </Modal>
             <DropdownAlert
@@ -27,7 +29,6 @@ const RootView = (props) => {
 
     );
 };
-
 const mapStateToProps = (state) => {
     return {
 

@@ -7,7 +7,7 @@ const TransactionView = (props) => {
 
     return (
         <View>
-            <HeadeSetting header_title={title}/>
+            <HeadeSetting header_title={title} iconFilter={true}/>
             <Text>
                 TransactionView
             </Text>

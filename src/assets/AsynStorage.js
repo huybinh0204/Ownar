@@ -1,6 +1,6 @@
 const KEY = {
     TOKEN: '@TOKEN',
-    USERINFO: '@USERINFO',
+    TYPE_LOGIN: '@TYPE_LOGIN',
 };
 
 export default KEY;

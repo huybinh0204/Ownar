@@ -57,8 +57,6 @@ const TabNavigator = (props) => {
                 }}
             />
         </Tab.Navigator>
-
-
     );
 };
 

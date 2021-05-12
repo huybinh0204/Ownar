@@ -1,5 +1,5 @@
 import React, {Component, useEffect} from 'react';
-import {View, Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, TouchableOpacity, AsyncStorage} from 'react-native';
 import InputView from '../../components/InputView';
 import CheckBoxView from '../../components/CheckBoxView';
 import {CheckBox} from 'react-native-elements';
@@ -8,6 +8,11 @@ import R from '../../assets/R';
 import {getFont, getFontXD, HEIGHTXD} from '../../config/Functions';
 import {useNavigation} from '@react-navigation/native';
 import {RESPASSVIEW, SIGNUPVIEW, TABNAVIGATION} from '../../routers/ScreenNames';
+import {login_accoun} from '../../api/Functions/login';
+import KEY from '../../assets/AsynStorage';
+import {showAlert, typeAlert} from '../../components/DropdownAlert';
+import {showLoading, hideLoading} from '../../redux/actions/loadingAction';
+import {connect} from "react-redux";
 
 var radio_props = [
     {label: 'Chủ bãi xe.    ', value: 'owner'},
@@ -15,13 +20,45 @@ var radio_props = [
 ];
 const LoginView = (props) => {
     const navigation = useNavigation();
-    const [email, setEmail] = React.useState('owner@admin.com');
+    const [email, setEmail] = React.useState('owner@dcv.vn');
     const [password, setPassword] = React.useState('123456');
-    const [value, setCheckbox_Ownerd] = React.useState(0);
+    const [tyleLogin, setTypeLogin] = React.useState('owner');
 
     useEffect(() => {
-        // ClickBox()
+        props.showLoading();
+        checkTokenLogin();
     }, []);
+    const postLogin = async () => {
+        props.showLoading();
+        const bodylogin = {
+            email: email,
+            password: password,
+            type: tyleLogin,
+        };
+        // console.log("requers",bodylogin);
+        const requers = await login_accoun(bodylogin);
+        if (requers.status == 200) {
+            const token = requers.data.data;
+            await AsyncStorage.setItem(KEY.TOKEN, JSON.stringify(token));
+            navigation.push(TABNAVIGATION);
+        } else {
+            showAlert(typeAlert.ERROR, 'Thông báo', 'Đăng nhập thất bại!');
+        }
+        props.hideLoading();
+    };
+    const checkTokenLogin = async () => {
+        console.log("222");
+        const is_token = await AsyncStorage.getItem(KEY.TOKEN);
+        if (is_token != null) {
+            navigation.reset({
+                index: 1,
+                routes: [{name: TABNAVIGATION}],
+            });
+        } else {
+           console.log("login token err!");
+        }
+        props.hideLoading();
+    };
     return (
         <ScrollView style={{flex: 1}}>
             <View style={{flex: 2, marginVertical: HEIGHTXD(30), alignItems: 'center', marginTop: HEIGHTXD(150)}}>
@@ -63,7 +100,7 @@ const LoginView = (props) => {
                     initial={0}
                     formHorizontal={true}
                     onPress={(value) => {
-                        setCheckbox_Ownerd({value: value});
+                        setTypeLogin(value);
                     }}
                 />
             </View>
@@ -75,14 +112,14 @@ const LoginView = (props) => {
             </View>
             <View style={{flex: 1, margin: HEIGHTXD(30)}}>
                 <TouchableOpacity
-                    onPress={() => navigation.push(TABNAVIGATION)}
+                    onPress={() => postLogin()}
                     style={{
-                    height: 40,
-                    borderRadius: 20,
-                    backgroundColor: R.colors.back_Color_login,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
+                        height: 40,
+                        borderRadius: 20,
+                        backgroundColor: R.colors.back_Color_login,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
                     <Text style={{fontSize: getFont(18), color: R.colors.inputbackgroundColor, fontWeight: 'bold'}}>
                         Đăng nhập
                     </Text>
@@ -106,5 +143,13 @@ const LoginView = (props) => {
 };
 const styles = StyleSheet.create({});
 
+// @ts-ignore
+function mapStateToProps(state) {
+    return {
+        loadingModal: state.ModalLoadingReducer,
+    };
+}
 
-export default LoginView;
+export default connect(mapStateToProps, {showLoading, hideLoading})(
+    LoginView,
+);

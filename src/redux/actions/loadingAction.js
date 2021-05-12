@@ -1,12 +1,15 @@
-import {SHOWLOADING, HIDELOADING} from './actionTypes';
+import {
+    SHOWLOADING,
+    HIDELOADING
+} from './actionTypes';
 
-export const showLoading = () => {
+export const showLoading =() => {
     return {
         type: SHOWLOADING,
     };
 };
 
-export const hideLoading = () => {
+export const hideLoading =() => {
     return {
         type: HIDELOADING
     };
