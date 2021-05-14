@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import R from '../assets/R';
 
-import Drawer from './Drawer';
+import HomeScreens from '../Screens/Home/HomeScreens';
 import QrCodeScreens from '../Screens/QRCode/QRCodeScreens';
 import SettingScreens from '../Screens/Setting/SettingScreens';
 
@@ -18,7 +18,7 @@ const TabNavigator = (props) => {
             tabBarOptions={{activeTintColor: R.colors.color_icon}}>
             <Tab.Screen
                 name="Screen1"
-                component={Drawer}
+                component={HomeScreens}
                 options={{
                     tabBarLabel: 'Trang chủ',
                     tabBarIcon: ({color, size}) => (

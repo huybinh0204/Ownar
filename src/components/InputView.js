@@ -12,15 +12,31 @@ import {useNavigation} from '@react-navigation/native';
 import R from '../assets/R';
 import {getFontXD, HEIGHTXD} from '../config/Functions';
 const InputView = (props) => {
+
     return (
         <View style={styles.container}>
-            <TextInput
-                secureTextEntry={props.secureTextEntry}
-                style={styles.input}
-                onChangeText={props.onChangeText}
-                value={props.value}
-                placeholder={props.placeholder}
-            />
+            {props.keyboardType == true ?
+                <TextInput
+                    keyboardType = 'numeric'
+                    accessible={false}
+                    secureTextEntry={props.secureTextEntry}
+                    style={styles.input}
+                    onChangeText={props.onChangeText}
+                    value={props.value}
+                    placeholder={props.placeholder}
+                />
+                :
+                <TextInput
+                    accessible={false}
+                    secureTextEntry={props.secureTextEntry}
+                    style={styles.input}
+                    onChangeText={props.onChangeText}
+                    value={props.value}
+                    placeholder={props.placeholder}
+                />
+
+            }
+
         </View>
     );
 };

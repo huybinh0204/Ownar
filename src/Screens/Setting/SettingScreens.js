@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import SettingView from './SettingView';
+import {AsyncStorage} from 'react-native';
+import KEY from '../../assets/AsynStorage';
 
 const datas = [
     {
@@ -48,11 +50,12 @@ const datas = [
 
 const SettingScreens = (props) => {
     const [data_user, setDataUser] = React.useState([]);
-    const dcv = 1;
-    useEffect(() => {
+    const setflatfomr = async ()=>{
+        const dcv = await AsyncStorage.getItem(KEY.TYPE_LOGIN);
+        const on = String(dcv);
         const obj =[];
         for (var i = 0; i < datas.length; i++) {
-            if (datas[i].is_from == 1 && dcv == 1) {
+            if (datas[i].is_from == 1 && on == "owner") {
                 const sha = {
                     name: datas[i].name,
                     icon: datas[i].icon,
@@ -61,7 +64,7 @@ const SettingScreens = (props) => {
                     screens: datas[i].screens,
                 };
                 obj.push(sha);
-            } else if (datas[i].is_from == 2 && dcv == 1) {
+            } else if (datas[i].is_from == 2 && on == "owner") {
                 const sha = {
                     name: datas[i].name,
                     icon: datas[i].icon,
@@ -70,7 +73,7 @@ const SettingScreens = (props) => {
                     screens: datas[i].screens,
                 };
                 obj.push(sha);
-            } else if (datas[i].is_from == 2 && dcv == 2) {
+            } else if (datas[i].is_from == 2 && on == "guard") {
                 const sha = {
                     name: datas[i].name,
                     icon: datas[i].icon,
@@ -82,6 +85,10 @@ const SettingScreens = (props) => {
             }
         }
         setDataUser(obj)
+
+    }
+    useEffect(() => {
+        setflatfomr()
 
     }, []);
     return <SettingView datas={data_user}/>;

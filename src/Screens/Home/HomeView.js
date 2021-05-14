@@ -6,13 +6,14 @@ import {useNavigation} from '@react-navigation/native';
 import {getFont, HEIGHT} from '../../config/Functions';
 import {connect} from 'react-redux';
 import {hideLoading, showLoading} from '../../redux/actions/loadingAction';
-import {home_booking, home_maps, login_accoun} from '../../api/Functions/login';
+import { home_maps, home_space_booking} from '../../api/Functions/login';
 import KEY from '../../assets/AsynStorage';
-import {TABNAVIGATION} from '../../routers/ScreenNames';
+import {CHECKTECKETVIEW, TABNAVIGATION} from '../../routers/ScreenNames';
 import {showAlert, typeAlert} from '../../components/DropdownAlert';
 import TextNoData from '../../components/TextNoData';
 import ItemGuards from './itemViewHome/ItemGuards';
 import ItemBookings from './itemViewHome/ItemBookings';
+import {and} from 'react-native-reanimated';
 
 const HomeView = (props) => {
     const navigation = useNavigation();
@@ -20,24 +21,42 @@ const HomeView = (props) => {
     const [id_boking, setIDBoking] = React.useState();
     const [_guards, setGuards] = React.useState('');
     const [_bookings, setBooking] = React.useState('');
+    const [is_headr, setIsheadr] = React.useState();
+
     useEffect(() => {
         getDattaMaps();
-        getBoking();
+        checkTokenIdUser();
     }, [id_boking]);
     const getDattaMaps = async () => {
         props.showLoading();
         const requers = await home_maps();
         if (requers.status == 200) {
             const data_requers_maps = requers.data;
+            console.log("item----data_requers_maps",data_requers_maps);
             setDataMaps(data_requers_maps);
-            props.hideLoading();
         } else {
             console.log('requers maps err');
         }
+        props.hideLoading();
     };
+    const checkTokenIdUser = async ()=>{
+        const is_owner = await AsyncStorage.getItem(KEY.TYPE_LOGIN);
+        const token = await AsyncStorage.getItem(KEY.TOKEN);
+        const json_token = JSON.parse(token);
+        const getowner =String(is_owner)
+        if (getowner == "owner"){
+            setIsheadr(true)
+            await getBoking(id_boking)
+        }else {
+            setIsheadr(false)
+            const idspace =json_token.space_id;
+            setIDBoking(idspace);
+            await getBoking(id_boking)
+        }
+    }
     const getBoking = async () => {
-        const requers = await home_booking(id_boking);
-        console.log('item', requers.data);
+        const requers = await home_space_booking(id_boking);
+        console.log('item-requers- home', requers.data);
         if (requers.status == 200) {
             const data_requers_ = requers.data.data;
             const data_booking = data_requers_.booking;
@@ -56,7 +75,7 @@ const HomeView = (props) => {
 
     return (
         <View style={{flex: 1}}>
-            <Headers datamaps={datamaps} _reloadData={_reloadData}/>
+            <Headers datamaps={datamaps} _reloadData={_reloadData} is_headr ={is_headr} />
             <ScrollView>
                 <View style={{flex: 1.2, margin: 10}}>
                     <Text style={{color: R.colors.loginlogo, fontWeight: 'bold', fontSize: getFont(18)}}>Bảo vệ</Text>
@@ -82,7 +101,8 @@ const HomeView = (props) => {
                             <FlatList
                                 data={_bookings}
                                 showsHorizontalScrollIndicator={false}
-                                renderItem={({item}) => <ItemBookings item={item} />}
+                                renderItem={({item}) => <ItemBookings item={item}
+                                />}
                                 keyExtractor={(index) => index + 'a'}
                             />
                         }

@@ -12,7 +12,8 @@ import {login_accoun} from '../../api/Functions/login';
 import KEY from '../../assets/AsynStorage';
 import {showAlert, typeAlert} from '../../components/DropdownAlert';
 import {showLoading, hideLoading} from '../../redux/actions/loadingAction';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
+import {setNetworkSetting} from '../../config/Setting';
 
 var radio_props = [
     {label: 'Chủ bãi xe.    ', value: 'owner'},
@@ -25,17 +26,24 @@ const LoginView = (props) => {
     const [tyleLogin, setTypeLogin] = React.useState('owner');
 
     useEffect(() => {
-        props.showLoading();
-        checkTokenLogin();
+        setNetworkSetting()
+        setTimeout(()=>{checkTokenLogin()},1000);
+
     }, []);
     const postLogin = async () => {
-        props.showLoading();
         const bodylogin = {
             email: email,
             password: password,
             type: tyleLogin,
         };
-        // console.log("requers",bodylogin);
+        console.log("item----bodylogin:",bodylogin);
+        console.log("item-----type :",tyleLogin)
+        await AsyncStorage.setItem(KEY.TYPE_LOGIN, tyleLogin);
+        setNetworkSetting()
+        await checkrequet(bodylogin);
+    };
+
+    const checkrequet = async (bodylogin) => {
         const requers = await login_accoun(bodylogin);
         if (requers.status == 200) {
             const token = requers.data.data;
@@ -44,10 +52,8 @@ const LoginView = (props) => {
         } else {
             showAlert(typeAlert.ERROR, 'Thông báo', 'Đăng nhập thất bại!');
         }
-        props.hideLoading();
     };
     const checkTokenLogin = async () => {
-        console.log("222");
         const is_token = await AsyncStorage.getItem(KEY.TOKEN);
         if (is_token != null) {
             navigation.reset({
@@ -55,9 +61,8 @@ const LoginView = (props) => {
                 routes: [{name: TABNAVIGATION}],
             });
         } else {
-           console.log("login token err!");
+            console.log('login token err!');
         }
-        props.hideLoading();
     };
     return (
         <ScrollView style={{flex: 1}}>
@@ -88,8 +93,7 @@ const LoginView = (props) => {
                     secureTextEntry={true}
                     onChangeText={setPassword}
                     value={password}
-                    placeholder="123456"
-                />
+                    placeholder="123456"/>
             </View>
 
             <View style={{flex: 1, marginHorizontal: HEIGHTXD(30)}}>

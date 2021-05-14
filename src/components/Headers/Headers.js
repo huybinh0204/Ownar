@@ -15,8 +15,8 @@ import {TouchableOpacity as TouchableOpacityInModal} from 'react-native-gesture-
 
 const Header = (props) => {
     const navigation = useNavigation();
-    const datamaps = props.datamaps.data
-    console.log("datamasp",datamaps);
+    const datamaps = props.datamaps.data;
+    console.log('datamasp', datamaps);
     const [email, setEmail] = React.useState('');
     const [bdx, setBdx] = React.useState('');
     const [isModalVisible, setModalVisible] = React.useState(false);
@@ -25,24 +25,31 @@ const Header = (props) => {
         setModalVisible(!isModalVisible);
     };
     const getSetView = (items) => {
-        props._reloadData(items)
-        toggleModal()
+        props._reloadData(items);
+        toggleModal();
     };
     return (
         <View style={styles.container}>
-            <TextInput
-                // secureTextEntry={props.secureTextEntry}
-                style={[styles.input, {width: '84%', marginLeft: HEIGHTXD(20)}]}
-                onChangeText={setEmail}
-                value={email}
-                placeholder='Tìm kiếm'/>
-            <TouchableOpacity onPress={() => toggleModal()} style={styles.tou}>
-                <Image
-                    source={R.images.homelocation}
-                    style={styles.img}
-                    resizeMode={'contain'}
-                />
-            </TouchableOpacity>
+            <View style={{paddingHorizontal:HEIGHTXD(20), flexDirection:'row', justifyContent: 'center',}}>
+                <TextInput
+                    // secureTextEntry={props.secureTextEntry}
+                    style={[styles.input, {width: props.is_headr == true ? '86%' : '96%'}]}
+                    onChangeText={setEmail}
+                    value={email}
+                    placeholder='Tìm kiếm'/>
+                {
+                    props.is_headr == true ?
+                        <TouchableOpacity onPress={() => toggleModal()} style={styles.tou}>
+                            <Image
+                                source={R.images.homelocation}
+                                style={styles.img}
+                                resizeMode={'contain'}
+                            />
+                        </TouchableOpacity>
+                        : <View></View>
+                }
+            </View>
+
             <Modal
                 isVisible={isModalVisible}
                 style={{alignItems: 'center'}}
@@ -68,7 +75,7 @@ const Header = (props) => {
                             onChangeText={setBdx}
                             value={bdx}
                             placeholder='Bãi đậu xe'/>
-                        <TouchableOpacity style={{width: '13%',}} onPress={() => toggleModal()}>
+                        <TouchableOpacity style={{width: '13%'}} onPress={() => toggleModal()}>
                             <Text style={{color: 'red', fontSize: 28, fontWeight: 'bold', textAlign: 'right'}}>X</Text>
                         </TouchableOpacity>
                         {/*<Text style={{fontSize: 30}}>Bãi đậu xe</Text>*/}
@@ -108,15 +115,14 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: HEIGHT(35),
+        height: HEIGHT(36),
         margin: 0,
         borderBottomWidth: 0.4,
         backgroundColor: '#61828f',
         elevation: 2,
-        paddingTop: HEIGHTXD(15),
+        paddingTop: HEIGHTXD(20),
         justifyContent: 'center',
         flexDirection: 'row',
-        paddingLeft: HEIGHTXD(30),
     },
     input: {
         paddingHorizontal: HEIGHTXD(25),
@@ -134,13 +140,14 @@ const styles = StyleSheet.create({
     tou: {
         paddingTop: 2,
         height: HEIGHT(35),
-        width: '16%',
+        // width: '13%',
         alignItems: 'center',
-        marginRight: 10,
+        paddingHorizontal: 4
+        // marginRight: 10,
     },
     img: {
         height: HEIGHT(25),
-        width: '50%',
+        width: HEIGHT(30),
     },
 
 });

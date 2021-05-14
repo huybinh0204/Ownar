@@ -2,7 +2,7 @@ import React, {Fragment, useRef, useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreens from '../Screens/Home/HomeScreens';
+
 import TabNavigator from './TabNavigation';
 
 import LoginScreens from '../Screens/Login/LoginScreens';
@@ -20,6 +20,7 @@ import ImageView from '../Screens/Setting/Image_Setting/ImageView';
 import ReviewsView from '../Screens/Setting/Reviews_Setting/Reviews_View';
 import RePasswordView from '../Screens/Setting/RePassword_Setting/RePasswordView';
 import FileView from '../Screens/Setting/File_Setting/FileView';
+import CheckTicketView from '../Screens/Home/CheckTickets/CheckTicketView';
 const Stack = createStackNavigator();
 
 function MyStack(props) {
@@ -29,7 +30,7 @@ function MyStack(props) {
             initialRouteName = {ScreenName.LOGINSCREEN}>
             <Stack.Screen name={ScreenName.LOGINSCREEN} component={LoginScreens} />
             <Stack.Screen name={ScreenName.TABNAVIGATION} component={TabNavigator} />
-            <Stack.Screen name={ScreenName.HOMESCREEN} component={HomeScreens} />
+
             <Stack.Screen name={ScreenName.SIGNUPVIEW} component={SignUpView} />
             <Stack.Screen name={ScreenName.RESPASSVIEW} component={ResPassView} />
             <Stack.Screen name={ScreenName.QRCODEVIEW} component={QrCodeScreens} />
@@ -43,6 +44,7 @@ function MyStack(props) {
             <Stack.Screen name={ScreenName.REVIEWSVIEW} component={ReviewsView} />
             <Stack.Screen name={ScreenName.REPASSWORDVIEW} component={RePasswordView} />
             <Stack.Screen name={ScreenName.FILESVIEW} component={FileView} />
+            <Stack.Screen name={ScreenName.CHECKTECKETVIEW} component={CheckTicketView} />
         </Stack.Navigator>
     );
 }

@@ -13,7 +13,7 @@ import {AlertHelper} from './components/DropdownAlert';
 const RootView = (props) => {
     console.log(props.loadingModal.isVisible);
     return (
-        <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? -HEIGHTXD(44) : 0}}>
+        <View style={{flex: 1,backgroundColor:'#3880ff', marginTop: Platform.OS === 'ios' ? -HEIGHTXD(44) : 0}}>
             {/*<GeneralStatusBarColor backgroundColor="#3880ff" barStyle="light-content" />*/}
             <StackNavigation/>
             <Modal style={{justifyContent: 'center', alignItems:'center'}} isVisible={props.loadingModal.isVisible}>

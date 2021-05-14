@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import {getFont, HEIGHT} from '../../../config/Functions';
 import R from '../../../assets/R';
+import {useNavigation} from '@react-navigation/native';
+import {CHECKTECKETVIEW} from '../../../routers/ScreenNames';
+import {getDateTime} from '../../../config/constants';
 
 const ItemBookings =(props)=> {
+    const navigation = useNavigation();
     const item = props.item;
+    const getCheckTecket =()=>{
+        console.log("item",item);
+        navigation.push(CHECKTECKETVIEW,{item:item.id});
+    }
     return (
-        <TouchableOpacity style={{
+        <TouchableOpacity onPress={(item)=>getCheckTecket()}
+            style={{
             marginBottom: 8,
             backgroundColor: '#cac8c8',
             borderRadius: HEIGHT(10),
             flexDirection: 'row',
             alignItems: 'center',
-        }}>
+        }} >
             <View style={{
                 width: HEIGHT(45),
                 height: HEIGHT(45),
@@ -49,7 +58,7 @@ const ItemBookings =(props)=> {
                     ID NO. {item.order_no}</Text>
                 <Text
                     style={{color: R.colors.loginlogo, fontSize: getFont(15)}}>
-                    {item.created_at.slice(5, 16)} đến {item.leaving_time.slice(5, 16)} </Text>
+                    {getDateTime(item.created_at)} đến {getDateTime(item.leaving_time)} </Text>
                 <Text
                     style={{color: R.colors.loginlogo, fontSize: getFont(15)}}>
                     {item.vehicle.brand} - {item.vehicle.vehicle_no}
