@@ -54,9 +54,6 @@ const FileView = (props) => {
         }else {
             console.log("requet err file setting")
         }
-
-
-
     }
     return (
         <View style={{flex: 1}}>

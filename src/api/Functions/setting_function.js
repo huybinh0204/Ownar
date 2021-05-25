@@ -9,3 +9,5 @@ export const seting_profile = async (body) =>
     GetData(`${url.GET_PROFILE}`, {}).then(res =>res).catch(err => console.log(null));
 export const seting_guard = async (body) =>
     GetData(`${url.GET_GUARD}`, {}).then(res =>res).catch(err => console.log(null));
+export const seting_review = async (body) =>
+    GetData(`${url.GET_REVIEW}`, {}).then(res =>res).catch(err => console.log(null));

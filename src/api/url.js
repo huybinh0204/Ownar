@@ -8,5 +8,6 @@ export default {
     GET_PROFILE :`${NetworkSetting[0].ROOT}/profile`,
     PUT_PROFILE_UPDATE :`${NetworkSetting[0].ROOT}/profile/update`,
     GET_GUARD :`${NetworkSetting[0].ROOT}/guard`,
+    GET_REVIEW :`${NetworkSetting[0].ROOT}/review/`,
 };
-console.log("222222NetworkSetting",NetworkSetting);
+// console.log("222222NetworkSetting",NetworkSetting);

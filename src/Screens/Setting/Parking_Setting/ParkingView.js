@@ -7,10 +7,11 @@ import R from '../../../assets/R';
 import {getFont, HEIGHT} from '../../../config/Functions';
 import {connect} from 'react-redux';
 import {hideLoading, showLoading} from '../../../redux/actions/loadingAction';
-import {ITEMGUARD, REPASSWORDVIEW} from '../../../routers/ScreenNames';
+import {APPMAPSPARKING, ITEMGUARD, REPASSWORDVIEW} from '../../../routers/ScreenNames';
 import {useNavigation} from '@react-navigation/native';
 import {seting_guard} from '../../../api/Functions/setting_function';
 import {home_maps} from '../../../api/Functions/login';
+import AppMapsParking from './App_Maps_Parking';
 
 const ParkingView = (props) => {
     const navigation = useNavigation();
@@ -36,7 +37,7 @@ const ParkingView = (props) => {
         getDataParking();
     }
     const AppParking = () => {
-        navigation.push(ITEMGUARD, {param: 'Thêm bảo vệ',reloadData:_reloadData});
+        navigation.push(APPMAPSPARKING, {param: 'Thêm bãi xe'});
     };
 
     return (

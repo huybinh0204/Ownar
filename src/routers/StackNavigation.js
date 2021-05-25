@@ -21,6 +21,7 @@ import ReviewsView from '../Screens/Setting/Reviews_Setting/Reviews_View';
 import RePasswordView from '../Screens/Setting/RePassword_Setting/RePasswordView';
 import FileView from '../Screens/Setting/File_Setting/FileView';
 import CheckTicketView from '../Screens/Home/CheckTickets/CheckTicketView';
+import AppMapsParking from '../Screens/Setting/Parking_Setting/App_Maps_Parking';
 const Stack = createStackNavigator();
 
 function MyStack(props) {
@@ -45,6 +46,7 @@ function MyStack(props) {
             <Stack.Screen name={ScreenName.REPASSWORDVIEW} component={RePasswordView} />
             <Stack.Screen name={ScreenName.FILESVIEW} component={FileView} />
             <Stack.Screen name={ScreenName.CHECKTECKETVIEW} component={CheckTicketView} />
+            <Stack.Screen name={ScreenName.APPMAPSPARKING} component={AppMapsParking} />
         </Stack.Navigator>
     );
 }
